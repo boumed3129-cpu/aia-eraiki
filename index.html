@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bricolage, rénovation et entretien pour les particuliers et les professionnels. Des travaux soignés, fiables et adaptés à vos besoins.">
+  <meta name="theme-color" content="#f8f7f2">
+  <title>Atelier & Maison — Bricolage, rénovation et entretien</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #202b25;
+      --muted: #68736c;
+      --green: #315d47;
+      --green-dark: #244635;
+      --lime: #d6e5a4;
+      --cream: #f8f7f2;
+      --white: #fff;
+      --line: #e8e8df;
+      --orange: #db8056;
+      --shadow: 0 18px 55px rgba(35, 54, 42, .11);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .brand { font-family: "Manrope", sans-serif; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .container { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      color: var(--green); font-size: 12px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 2px; background: var(--orange); }
+    .section-title { margin: 15px 0 14px; font-size: clamp(32px, 4.2vw, 48px); line-height: 1.12; letter-spacing: -.045em; }
+    .section-intro { max-width: 590px; color: var(--muted); font-size: 16px; line-height: 1.75; }
+    .button {
+      min-height: 52px; padding: 0 22px; border: 0; border-radius: 999px;
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      color: #fff; background: var(--green); font-weight: 700; font-size: 14px;
+      cursor: pointer; transition: transform .2s, background .2s, box-shadow .2s;
+    }
+    .button:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 10px 22px rgba(49,93,71,.2); }
+    .button svg { width: 17px; height: 17px; }
+    .button-light { color: var(--green); background: #fff; }
+    .button-light:hover { color: white; background: var(--green-dark); }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: 14px; font-weight: 700; }
+    .text-link:hover { gap: 12px; }
+    .text-link, .text-link svg { transition: .2s; }
+    .site-header {
+      z-index: 20; position: sticky; top: 0; background: rgba(248,247,242,.91);
+      backdrop-filter: blur(16px); border-bottom: 1px solid rgba(35,54,42,.07);
+    }
+    .nav-wrap { height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; letter-spacing: -.06em; white-space: nowrap; }
+    .brand-mark { width: 36px; height: 36px; display: grid; place-items: center; color: var(--green); background: var(--lime); border-radius: 12px 12px 12px 4px; }
+    .brand-mark svg { width: 21px; }
+    .brand span small { display: block; margin-top: -2px; color: var(--muted); font: 600 8px "DM Sans", sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 31px; }
+    .nav-links a { color: #4d5b51; font-size: 13px; font-weight: 600; transition: color .2s; }
+    .nav-links a:hover { color: var(--green); }
+    .nav-action { min-height: 44px; padding: 0 18px; font-size: 13px; }
+    .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); background: white; border-radius: 50%; color: var(--green); cursor: pointer; }
+    .hero { padding: 55px 0 73px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 55px; }
+    .hero-copy { padding: 18px 0 18px 3px; }
+    .hero-copy h1 { max-width: 600px; margin: 19px 0 20px; font-size: clamp(44px, 6vw, 72px); line-height: 1.02; letter-spacing: -.065em; }
+    .hero-copy h1 em { color: var(--green); font-style: normal; }
+    .hero-copy > p { max-width: 500px; margin: 0; color: var(--muted); font-size: 17px; line-height: 1.75; }
+    .hero-actions { display: flex; align-items: center; gap: 24px; margin-top: 29px; }
+    .hero-note { display: flex; align-items: center; gap: 10px; margin-top: 31px; color: var(--muted); font-size: 12px; }
+    .avatars { display: flex; padding-left: 3px; }
+    .avatars img { width: 29px; height: 29px; object-fit: cover; border: 2px solid var(--cream); border-radius: 50%; margin-left: -6px; }
+    .avatars img:first-child { margin-left: 0; }
+    .stars { color: #d79a4a; letter-spacing: 1px; font-size: 12px; }
+    .hero-visual { min-height: 480px; position: relative; }
+    .hero-image {
+      position: absolute; inset: 0 0 0 45px; overflow: hidden;
+      border-radius: 180px 180px 22px 22px; background: #d9dfd0;
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-image::after { content: ""; position: absolute; inset: 45% 0 0; background: linear-gradient(transparent, rgba(16,34,24,.35)); }
+    .floating-card {
+      position: absolute; z-index: 1; left: 0; bottom: 35px; width: 226px; padding: 18px;
+      background: white; border-radius: 16px; box-shadow: var(--shadow);
+    }
+    .floating-top { display: flex; align-items: center; gap: 11px; }
+    .floating-icon { width: 39px; height: 39px; display: grid; place-items: center; color: var(--green); background: #eef3e2; border-radius: 12px; }
+    .floating-icon svg { width: 20px; }
+    .floating-card strong { display: block; font-size: 13px; }
+    .floating-card small { color: var(--muted); font-size: 11px; }
+    .floating-bottom { margin-top: 15px; padding-top: 13px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .floating-bottom b { color: var(--green); }
+    .image-caption { position: absolute; z-index: 1; right: 22px; bottom: 22px; color: white; font-size: 12px; font-weight: 600; }
+    .trust-strip { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .trust-row { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .trust-label { color: var(--muted); font-size: 12px; }
+    .trust-item { display: flex; align-items: center; gap: 9px; color: #405247; font-size: 13px; font-weight: 700; }
+    .trust-item svg { width: 19px; height: 19px; color: var(--green); }
+    section { scroll-margin-top: 90px; }
+    .services { padding: 105px 0 110px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 37px; }
+    .section-heading .section-intro { margin-bottom: 4px; }
+    .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .service-card {
+      min-height: 222px; padding: 23px 21px; position: relative; display: flex; flex-direction: column;
+      background: white; border: 1px solid #efefe9; border-radius: 17px; transition: .25s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: transparent; }
+    .service-icon { width: 45px; height: 45px; display: grid; place-items: center; color: var(--green); background: #eff3e6; border-radius: 14px; }
+    .service-icon svg { width: 23px; height: 23px; }
+    .service-card h3 { margin: 19px 0 8px; font-size: 16px; letter-spacing: -.025em; }
+    .service-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.65; }
+    .service-arrow { position: absolute; top: 25px; right: 21px; width: 18px; color: #9aa69b; }
+    .why { padding: 88px 0; background: #edf0e7; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .why-photo { height: 435px; position: relative; }
+    .why-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 18px; }
+    .experience-badge { position: absolute; right: -20px; bottom: 25px; width: 145px; padding: 18px; color: white; background: var(--green); border-radius: 16px; box-shadow: var(--shadow); }
+    .experience-badge strong { display: block; font: 800 26px "Manrope", sans-serif; }
+    .experience-badge span { font-size: 11px; line-height: 1.45; opacity: .85; }
+    .why-copy .section-title { max-width: 470px; }
+    .why-copy .section-intro { margin-bottom: 25px; }
+    .benefit-list { display: grid; gap: 17px; }
+    .benefit { display: flex; align-items: flex-start; gap: 13px; }
+    .check { flex: 0 0 24px; width: 24px; height: 24px; display: grid; place-items: center; color: var(--green); background: var(--lime); border-radius: 50%; font-size: 13px; font-weight: 700; }
+    .benefit strong { display: block; margin: 1px 0 3px; font-size: 14px; }
+    .benefit p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+    .why-copy .button { margin-top: 27px; }
+    .process { padding: 102px 0 108px; }
+    .center-heading { text-align: center; }
+    .center-heading .section-intro { margin: 0 auto; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 51px; }
+    .step { position: relative; padding: 0 15px; text-align: center; }
+    .step:not(:last-child)::after { content: ""; position: absolute; top: 26px; left: calc(50% + 39px); width: calc(100% - 50px); border-top: 1px dashed #c9d1c4; }
+    .step-number { width: 54px; height: 54px; margin: 0 auto 20px; display: grid; place-items: center; position: relative; z-index: 1; color: var(--green); background: var(--lime); border: 7px solid var(--cream); border-radius: 50%; font: 800 15px "Manrope", sans-serif; }
+    .step h3 { margin: 0 0 9px; font-size: 17px; }
+    .step p { max-width: 270px; margin: 0 auto; color: var(--muted); font-size: 13px; line-height: 1.7; }
+    .cta-band { padding: 42px; display: flex; justify-content: space-between; align-items: center; gap: 25px; color: white; background: var(--green); border-radius: 22px; }
+    .cta-band h2 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.04em; }
+    .cta-band p { margin: 0; color: rgba(255,255,255,.76); font-size: 14px; }
+    .faq { padding: 105px 0 100px; }
+    .faq-grid { display: grid; grid-template-columns: .75fr 1.25fr; gap: 85px; }
+    .faq-list { border-top: 1px solid var(--line); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-question { width: 100%; padding: 20px 0; display: flex; align-items: center; justify-content: space-between; gap: 15px; border: 0; color: var(--ink); background: transparent; text-align: left; font-weight: 700; font-size: 14px; cursor: pointer; }
+    .faq-question span:last-child { width: 25px; height: 25px; flex: 0 0 25px; display: grid; place-items: center; border-radius: 50%; color: var(--green); background: #edf1e5; font-size: 18px; transition: transform .2s; }
+    .faq-item.active .faq-question span:last-child { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+    .faq-answer p { margin: -2px 35px 19px 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .contact { padding: 91px 0; background: #edf0e7; }
+    .contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 75px; align-items: start; }
+    .contact-copy .section-title { font-size: clamp(34px, 4vw, 46px); }
+    .contact-points { display: grid; gap: 14px; margin-top: 28px; }
+    .contact-point { display: flex; align-items: center; gap: 12px; color: #405247; font-size: 13px; font-weight: 600; }
+    .contact-point span:first-child { width: 36px; height: 36px; display: grid; place-items: center; color: var(--green); background: white; border-radius: 12px; }
+    .contact-point svg { width: 17px; height: 17px; }
+    .contact-card { padding: 30px; background: white; border-radius: 20px; box-shadow: 0 12px 40px rgba(35,54,42,.07); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { color: #4d5b51; font-size: 12px; font-weight: 700; }
+    .field input, .field select, .field textarea {
+      width: 100%; min-height: 46px; padding: 12px 13px; border: 1px solid #e5e8df; border-radius: 10px;
+      outline: 0; background: #fcfcfa; color: var(--ink); font-size: 13px; transition: border .2s, box-shadow .2s;
+    }
+    .field textarea { min-height: 95px; resize: vertical; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: #91ad85; box-shadow: 0 0 0 3px rgba(49,93,71,.09); }
+    .form-footer { margin-top: 16px; display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+    .form-note { max-width: 220px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+    .form-success { display: none; margin-top: 13px; padding: 12px 14px; color: var(--green-dark); background: #edf5e6; border-radius: 9px; font-size: 13px; }
+    .site-footer { padding: 49px 0 22px; background: #202d25; color: white; }
+    .footer-top { display: flex; justify-content: space-between; gap: 45px; padding-bottom: 37px; }
+    .footer-brand { max-width: 300px; }
+    .footer-brand .brand { color: white; }
+    .footer-brand p { margin: 16px 0 0; color: #b1beb4; font-size: 12px; line-height: 1.75; }
+    .footer-links { display: flex; gap: 65px; }
+    .footer-column h3 { margin: 5px 0 15px; color: #fff; font-size: 12px; }
+    .footer-column a, .footer-column p { display: block; margin: 0 0 10px; color: #b1beb4; font-size: 11px; }
+    .footer-column a:hover { color: var(--lime); }
+    .footer-bottom { padding-top: 19px; display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid rgba(255,255,255,.13); color: #9daaa0; font-size: 10px; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 900px) {
+      .nav-links { gap: 18px; }
+      .hero-grid { gap: 30px; }
+      .hero-visual { min-height: 420px; }
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { gap: 48px; }
+      .faq-grid, .contact-grid { gap: 45px; }
+    }
+    @media (max-width: 700px) {
+      .container { width: min(100% - 36px, 520px); }
+      .nav-wrap { height: 70px; }
+      .nav-action { display: none; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-links {
+        position: absolute; top: 69px; left: 0; right: 0; display: none; align-items: stretch; gap: 0;
+        padding: 10px 18px 18px; background: var(--cream); border-bottom: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; flex-direction: column; }
+      .nav-links a { padding: 13px 6px; border-bottom: 1px solid var(--line); }
+      .hero { padding: 34px 0 48px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      .hero-copy h1 { font-size: clamp(43px, 12vw, 60px); }
+      .hero-copy > p { font-size: 15px; }
+      .hero-actions { flex-wrap: wrap; gap: 16px; }
+      .hero-visual { min-height: 390px; }
+      .hero-image { inset: 0 0 0 28px; border-radius: 140px 140px 18px 18px; }
+      .floating-card { bottom: 20px; width: 205px; }
+      .trust-row { padding: 19px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 16px 10px; }
+      .trust-label { grid-column: 1 / -1; }
+      .trust-item { font-size: 11px; }
+      .services, .process, .faq { padding: 75px 0; }
+      .section-heading { display: block; }
+      .section-heading .section-intro { margin-bottom: 20px; }
+      .service-grid { gap: 10px; }
+      .service-card { min-height: 215px; padding: 18px 15px; }
+      .service-card h3 { font-size: 14px; }
+      .service-card p { font-size: 11px; }
+      .why { padding: 68px 0; }
+      .why-grid { grid-template-columns: 1fr; gap: 38px; }
+      .why-photo { height: 330px; margin-right: 14px; }
+      .experience-badge { right: -13px; bottom: 18px; width: 128px; }
+      .steps { grid-template-columns: 1fr; gap: 27px; margin-top: 35px; }
+      .step:not(:last-child)::after { top: 47px; left: calc(50% - 1px); width: 0; height: 26px; border-top: 0; border-left: 1px dashed #c9d1c4; }
+      .cta-band { padding: 29px 24px; display: block; }
+      .cta-band .button { margin-top: 21px; }
+      .faq-grid, .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+      .contact { padding: 70px 0; }
+      .contact-card { padding: 21px 17px; }
+      .form-grid { gap: 13px; }
+      .form-footer { align-items: flex-start; flex-direction: column; }
+      .footer-top { flex-direction: column; gap: 32px; }
+      .footer-links { justify-content: space-between; gap: 20px; }
+      .footer-bottom { flex-direction: column; gap: 8px; }
+    }
+    @media (max-width: 390px) {
+      .container { width: calc(100% - 28px); }
+      .service-card { min-height: 225px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .hero-actions .text-link { font-size: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#accueil" class="brand" aria-label="Atelier et Maison, accueil">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg>
+        </span>
+        <span>atelier & maison<small>les bons gestes, chez vous</small></span>
+      </a>
+      <nav class="nav-links" id="mainNav" aria-label="Navigation principale">
+        <a href="#services">Nos services</a>
+        <a href="#engagements">Nos engagements</a>
+        <a href="#methode">Comment ça marche</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="button nav-action">Demander un devis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Bricolage · rénovation · entretien</span>
+          <h1>On s’occupe de vos travaux. <em>Vous profitez.</em></h1>
+          <p>Un coup de main pour la maison ou les locaux professionnels ? Nos équipes réalisent vos petits travaux avec soin, simplicité et le souci du travail bien fait.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="button">Parlons de votre projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="#services" class="text-link">Découvrir nos services <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <div class="hero-note">
+            <div class="avatars" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80" alt="">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=80&q=80" alt="">
+            </div>
+            <span><span class="stars">★★★★★</span><br>Des clients qui nous recommandent</span>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" alt="Intérieur rénové avec soin, lumineux et accueillant">
+          </div>
+          <div class="floating-card">
+            <div class="floating-top">
+              <span class="floating-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 7v5c0 5 3.4 8 8 9 4.6-1 8-4 8-9V7l-8-4Z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg></span>
+              <span><strong>Le travail bien fait</strong><small>à chaque intervention</small></span>
+            </div>
+            <div class="floating-bottom">Votre projet, <b>notre savoir-faire.</b></div>
+          </div>
+          <span class="image-caption">Des espaces pensés pour vous.</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-row">
+        <span class="trust-label">Un service qui s’adapte à votre quotidien</span>
+        <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg>Travail soigné</span>
+        <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Intervention flexible</span>
+        <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-7"/></svg>Devis personnalisé</span>
+      </div>
+    </div>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">Un seul interlocuteur</span>
+            <h2 class="section-title">Les petites choses qui<br>changent tout.</h2>
+          </div>
+          <div>
+            <p class="section-intro">Une intervention ponctuelle ou plusieurs travaux à planifier ? Nous vous apportons une solution adaptée, de la première idée aux finitions.</p>
+            <a href="#contact" class="text-link">Parler de mon besoin <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+        <div class="service-grid">
+          <article class="service-card reveal">
+            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c4.5-3.2 7-7.1 7-11.5a7 7 0 0 0-14 0C5 13.9 7.5 17.8 12 21Z"/><path d="M12 18v-7m0 2c-2.2 0-3.5-1.3-3.5-3.5 2.2 0 3.5 1.3 3.5 3.5Zm0-2c0-2.2 1.3-3.5 3.5-3.5 0 2.2-1.3 3.5-3.5 3.5Z"/></svg></span>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            <h3>Jardin & espaces verts</h3><p>Tonte, taille des haies, désherbage et entretien de vos extérieurs.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v4a5 5 0 0 1-10 0V7Z"/><path d="M12 16v5m-4 0h8M9 7V4h6v3M17 9h3v3a3 3 0 0 1-3 3"/></svg></span>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            <h3>Plomberie</h3><p>Fuites, robinetterie, sanitaires et petites réparations du quotidien.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h16M6 9V5h12v4M6 9v10h12V9M9 13h6m-6 3h6"/></svg></span>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            <h3>Montage & démontage</h3><p>Meubles en kit, mobilier, cuisines et aménagements à assembler.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m4 20 11-11m-7 13 9-9M14 5l5 5M4 18l2 2m9-17 5 5M5 8h5M7.5 5.5v5"/></svg></span>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            <h3>Peinture & décoration</h3><p>Murs, finitions, papier peint et rafraîchissement de vos espaces.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg></span>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            <h3>Électricité</h3><p>Luminaires, prises et petits travaux électriques pour plus de confort.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M6 20V8l6-4 6 4v12M9 11h6m-6 4h6"/></svg></span>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            <h3>Menuiserie</h3><p>Étagères, portes, réparations de meubles et petits travaux de bois.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-6h6v6M3 10l9-6 9 6"/></svg></span>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            <h3>Rénovation & entretien</h3><p>Réparations, petits travaux de maçonnerie, sols et entretien général.</p>
+          </article>
+          <article class="service-card reveal">
+            <span class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M7 5v6m10-6v6M5 11h14v9H5zM8 14h8"/></svg></span>
+            <svg class="service-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            <h3>Installation & fixation</h3><p>Tringles, tableaux, stores et accessoires posés avec précision.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="why" id="engagements">
+      <div class="container why-grid">
+        <div class="why-photo reveal">
+          <img src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1000&q=85" alt="Artisan réalisant des travaux de rénovation intérieure">
+          <div class="experience-badge"><strong>100%</strong><span>à l’écoute de vos besoins, du début à la fin.</span></div>
+        </div>
+        <div class="why-copy reveal">
+          <span class="eyebrow">Notre engagement</span>
+          <h2 class="section-title">Du soin dans le geste.<br>Du sérieux dans le suivi.</h2>
+          <p class="section-intro">Un chantier serein commence par une bonne écoute. Nous prenons le temps de comprendre ce qu’il vous faut et de vous proposer la bonne solution.</p>
+          <div class="benefit-list">
+            <div class="benefit"><span class="check">✓</span><div><strong>Un travail soigné</strong><p>Des finitions propres et une attention portée aux détails.</p></div></div>
+            <div class="benefit"><span class="check">✓</span><div><strong>Une approche personnalisée</strong><p>Chaque intervention est pensée selon votre espace, votre besoin et vos contraintes.</p></div></div>
+            <div class="benefit"><span class="check">✓</span><div><strong>Un service simple et fiable</strong><p>Un échange clair, une organisation pratique et un suivi attentif.</p></div></div>
+          </div>
+          <a href="#contact" class="button">Échangeons sur votre projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="methode">
+      <div class="container">
+        <div class="center-heading reveal">
+          <span class="eyebrow">Simple comme bonjour</span>
+          <h2 class="section-title">Votre projet, en trois étapes.</h2>
+          <p class="section-intro">Pas besoin de tout prévoir à l’avance. On fait le point ensemble, et on avance à votre rythme.</p>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><div class="step-number">01</div><h3>Vous nous expliquez</h3><p>Décrivez votre besoin et partagez les détails qui comptent pour vous.</p></div>
+          <div class="step reveal"><div class="step-number">02</div><h3>On trouve la solution</h3><p>Nous échangeons avec vous pour définir une intervention adaptée.</p></div>
+          <div class="step reveal"><div class="step-number">03</div><h3>On passe à l’action</h3><p>Nous planifions les travaux et réalisons votre projet avec soin.</p></div>
+        </div>
+        <div class="cta-band reveal" style="margin-top: 82px">
+          <div><h2>Un projet en tête ? On est là pour vous.</h2><p>Maison, appartement, bureau ou commerce : parlons de ce qu’il vous faut.</p></div>
+          <a href="#contact" class="button button-light">Demander un devis <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="container faq-grid">
+        <div class="reveal">
+          <span class="eyebrow">Une question ?</span>
+          <h2 class="section-title">Bon à savoir<br>avant de commencer.</h2>
+          <p class="section-intro">Vous ne trouvez pas la réponse à votre question ? Décrivez-nous votre projet, nous serons ravis d’en discuter avec vous.</p>
+          <a href="#contact" class="text-link">Nous contacter <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="faq-list reveal">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Intervenez-vous auprès des professionnels ?</span><span>+</span></button>
+            <div class="faq-answer"><p>Oui. Nous intervenons dans les maisons et appartements, mais aussi dans les bureaux, les commerces et les locaux professionnels.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Comment obtenir une estimation pour mes travaux ?</span><span>+</span></button>
+            <div class="faq-answer"><p>Décrivez-nous les travaux à réaliser via le formulaire de contact. Nous reviendrons vers vous pour échanger sur votre besoin et vous proposer une estimation adaptée.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Dois-je avoir une liste précise des travaux ?</span><span>+</span></button>
+            <div class="faq-answer"><p>Pas nécessairement. Vous pouvez nous contacter même si votre projet n’est pas encore entièrement défini. Nous prendrons le temps de préciser ensemble ce dont vous avez besoin.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false"><span>Quels types de travaux prenez-vous en charge ?</span><span>+</span></button>
+            <div class="faq-answer"><p>Nous proposons des services variés : jardinage, plomberie, montage de meubles, peinture, petits travaux électriques, menuiserie, entretien et installations. N’hésitez pas à nous demander si votre projet entre dans notre champ d’intervention.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <span class="eyebrow">On en parle ?</span>
+          <h2 class="section-title">Racontez-nous<br>votre projet.</h2>
+          <p class="section-intro">Quelques mots suffisent pour commencer. Nous vous recontacterons pour mieux comprendre votre besoin.</p>
+          <div class="contact-points">
+            <div class="contact-point"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.7L7.7 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.7-.6l3 .5a2 2 0 0 1 1.7 2.6Z"/></svg></span>Un échange simple, sans engagement</div>
+            <div class="contact-point"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>Une réponse personnalisée à votre demande</div>
+            <div class="contact-point"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span>Des conseils adaptés à votre situation</div>
+          </div>
+        </div>
+        <form class="contact-card reveal" id="contactForm">
+          <div class="form-grid">
+            <div class="field"><label for="name">Votre nom</label><input id="name" name="name" type="text" placeholder="Prénom et nom" required></div>
+            <div class="field"><label for="email">Votre e-mail</label><input id="email" name="email" type="email" placeholder="vous@exemple.fr" required></div>
+            <div class="field"><label for="phone">Téléphone <span style="font-weight:400;color:#879188">(facultatif)</span></label><input id="phone" name="phone" type="tel" placeholder="06 00 00 00 00"></div>
+            <div class="field"><label for="service">Type de travaux</label>
+              <select id="service" name="service" required>
+                <option value="" disabled selected>Choisir un service</option>
+                <option>Jardin & espaces verts</option><option>Plomberie</option><option>Montage & démontage</option>
+                <option>Peinture & décoration</option><option>Électricité</option><option>Menuiserie</option>
+                <option>Rénovation & entretien</option><option>Installation & fixation</option><option>Autre / plusieurs besoins</option>
+              </select>
+            </div>
+            <div class="field full"><label for="message">Parlez-nous de votre projet</label><textarea id="message" name="message" placeholder="Que souhaitez-vous faire ? Où en êtes-vous dans votre projet ?" required></textarea></div>
+          </div>
+          <div class="form-footer">
+            <span class="form-note">En envoyant ce formulaire, vous acceptez d’être recontacté au sujet de votre demande.</span>
+            <button class="button" type="submit">Envoyer ma demande <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <div class="form-success" id="formSuccess" role="status">Merci pour votre demande ! Votre message a bien été pris en compte.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#accueil" class="brand">
+            <span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg></span>
+            <span>atelier & maison<small>les bons gestes, chez vous</small></span>
+          </a>
+          <p>Votre partenaire de confiance pour les petits travaux, la rénovation et l’entretien de vos espaces.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column"><h3>Découvrir</h3><a href="#services">Nos services</a><a href="#engagements">Nos engagements</a><a href="#methode">Notre méthode</a></div>
+          <div class="footer-column"><h3>Nous contacter</h3><a href="#contact">Demander un devis</a><a href="mailto:bonjour@ateliermaison.fr">bonjour@ateliermaison.fr</a><p>Particuliers & professionnels</p></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Atelier & Maison. Tous droits réservés.</span><span>Bricolage · Rénovation · Entretien</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+      menuToggle.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+    });
+
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Ouvrir le menu');
+      });
+    });
+
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.contains('active');
+
+        document.querySelectorAll('.faq-item').forEach(other => {
+          other.classList.remove('active');
+          other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          other.querySelector('.faq-answer').style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          item.classList.add('active');
+          button.setAttribute('aria-expanded', 'true');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      if (!this.reportValidity()) return;
+      document.getElementById('formSuccess').style.display = 'block';
+      this.reset();
+      document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
